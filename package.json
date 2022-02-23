@@ -13,7 +13,8 @@
       "format": "prettier --write \"**/*.{ts,tsx,md}\"",
       "react:dev": "turbo run dev --scope=courses-react",
       "next:dev": "turbo run dev --scope=frontend-next",
-      "backend:dev": "turbo run dev --scope=backend"
+      "backend:dev": "turbo run dev --scope=backend",
+      "full:dev": "turbo run dev --parallel --scope=backend --scope=frontend-next --no-cache --no-deps"
    },
    "devDependencies": {
       "prettier": "^2.5.1",
