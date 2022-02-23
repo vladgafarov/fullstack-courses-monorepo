@@ -1,6 +1,6 @@
 {
-   "name": "turborepo-basic-shared",
-   "version": "0.0.0",
+   "name": "turborepo-fullstack-courses",
+   "version": "0.0.1",
    "private": true,
    "workspaces": [
       "apps/*",
@@ -10,7 +10,10 @@
       "build": "turbo run build",
       "dev": "turbo run dev --parallel",
       "lint": "turbo run lint",
-      "format": "prettier --write \"**/*.{ts,tsx,md}\""
+      "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+      "react:dev": "turbo run dev --scope=courses-react",
+      "next:dev": "turbo run dev --scope=next",
+      "backend:dev": "turbo run dev --scope=backend"
    },
    "devDependencies": {
       "prettier": "^2.5.1",
