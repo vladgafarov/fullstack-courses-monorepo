@@ -1,4 +1,4 @@
-// import Nav from './Nav'
+import Nav from './Nav'
 
 import { Link } from 'react-router-dom'
 
@@ -10,8 +10,7 @@ const Header = () => {
                <h1 className="text-2xl">Courses</h1>
             </Link>
          </div>
-         {/* <Nav /> */}
-         <Link to="/playground">playground</Link>
+         <Nav />
       </header>
    )
 }

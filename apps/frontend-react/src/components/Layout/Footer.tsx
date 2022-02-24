@@ -5,7 +5,7 @@ const Footer = () => {
       <footer className="py-4 px-6 bg-slate-600 text-white">
          <div>
             <Link to="/">
-               <h1 className="text-green-400 text-2xl">Courses</h1>
+               <h1 className="text-green-400">Courses</h1>
             </Link>
          </div>
          <div>&copy; Copyright 2022</div>

@@ -9,7 +9,7 @@ import {
    Button,
 } from '@mantine/core'
 import { useForm } from '@mantine/hooks'
-import { Input, Button as ButtonStyle } from 'ui'
+import { Input, Button as ButtonStyle, ButtonAlert } from 'ui'
 import img from '../logo.svg'
 import { DiCode } from 'react-icons/di'
 import { Link } from 'react-router-dom'
@@ -59,9 +59,12 @@ const Playground = () => {
                   }}
                   {...form.getInputProps('password')}
                />
-               <ButtonStyle leftIcon={<DiCode />} type="submit">
+               <ButtonStyle leftIcon={<DiCode />} type="submit" value="outline">
                   Зарегистрироваться
                </ButtonStyle>
+               <ButtonAlert leftIcon={<DiCode />}>
+                  Зарегистрироваться
+               </ButtonAlert>
             </Group>
          </form>
       </Container>

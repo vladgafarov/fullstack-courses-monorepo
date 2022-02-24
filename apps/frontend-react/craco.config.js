@@ -1,10 +1,16 @@
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
 const path = require('path')
 const { getLoader, loaderByName } = require('@craco/craco')
 const absolutePath = path.join(__dirname, '../../packages/ui')
 
 module.exports = {
    webpack: {
-      alias: {},
+      alias: {
+         '@components': 'src/components',
+         '@api': 'src/api',
+         '@public': 'public',
+         '@lib': 'src/lib',
+      },
       plugins: [],
       configure: (webpackConfig, { env, paths }) => {
          const { isFound, match } = getLoader(

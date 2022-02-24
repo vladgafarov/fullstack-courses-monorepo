@@ -1,5 +1,14 @@
 {
    "extends": "tsconfig/react-library.json",
-   "include": ["**/*.ts", "**/*.tsx"],
-   "exclude": ["node_modules"]
+   "include": ["src", "**/*.ts", "**/*.tsx"],
+   "exclude": ["node_modules"],
+   "compilerOptions": {
+      "baseUrl": ".",
+      "paths": {
+         "@components/*": ["src/components/*"],
+         "@api/*": ["src/api/*"],
+         "@public/*": ["public/*"],
+         "@lib/*": ["src/lib/*"]
+      }
+   }
 }
