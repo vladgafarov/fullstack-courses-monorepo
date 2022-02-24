@@ -10,5 +10,12 @@
       "config": "workspace:*",
       "tsconfig": "workspace:*",
       "typescript": "^4.5.3"
+   },
+   "dependencies": {
+      "@mantine/core": "^3.6.9",
+      "@mantine/hooks": "^3.6.9",
+      "@mantine/modals": "^3.6.9",
+      "@mantine/notifications": "^3.6.9",
+      "classnames": "^2.3.1"
    }
 }

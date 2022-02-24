@@ -1,14 +1,41 @@
 @tailwind base;
 @tailwind components;
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+   @apply font-proxima-bold;
+}
+
 @tailwind utilities;
 
-body {
-   margin: 0;
-   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
-      'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
-      'Helvetica Neue', sans-serif;
-   -webkit-font-smoothing: antialiased;
-   -moz-osx-font-smoothing: grayscale;
+@font-face {
+   font-family: 'proxima';
+   src: url('../public/static/fonts/proxima/ProximaNova-Regular.woff')
+      format('woff');
+   font-weight: normal;
+   font-style: normal;
+}
+@font-face {
+   font-family: 'proxima-medium';
+   src: url('../public/static/fonts/proxima/ProximaNova-Semibold.woff')
+      format('woff');
+   font-weight: medium;
+   font-style: normal;
+}
+@font-face {
+   font-family: 'proxima-bold';
+   src: url('../public/static/fonts/proxima/ProximaNova-Bold.woff')
+      format('woff');
+   font-weight: bold;
+   font-style: normal;
+}
+
+* {
+   font-family: 'proxima', Arial;
 }
 
 code {

@@ -1,5 +1,18 @@
-export const Button = () => {
+import { Button as BaseButton, ButtonProps } from '@mantine/core'
+
+export const Button = ({ children, ...props }: ButtonProps<'button'>) => {
    return (
-      <button className="bg-blue-500 text-white px-4 py-2 rounded">Boop</button>
+      <BaseButton
+         classNames={{
+            root: 'font-bold py-2 px-4 rounded border-2 bg-blue-500 border-blue-500 hover:bg-blue-700 hover:border-blue-700 text-white',
+            default: `
+               bg-blue-500 border-blue-500 hover:bg-blue-700 hover:border-blue-700 text-white
+            `,
+            outline: 'bg-white border-blue-500 hover:bg-blue-200 text-blue-500',
+         }}
+         {...props}
+      >
+         {children}
+      </BaseButton>
    )
 }
