@@ -9,20 +9,31 @@ import Login from '@components/Auth/Login'
 import Signup from '@components/Auth/Signup'
 import RequestResetPassword from '@components/Auth/RequestResetPassword'
 import ResetPassword from '@components/Auth/ResetPassword'
+import { QueryClient, QueryClientProvider } from 'react-query'
+
+const queryClient = new QueryClient()
 
 function App() {
    return (
-      <Routes>
-         <Route path="/" element={<Layout />}>
-            <Route index element={<Main />} />
-            <Route path="playground" element={<Playground />} />
-            <Route path="courses" element={<AllCourses />} />
-            <Route path="login" element={<Login />} />
-            <Route path="signup" element={<Signup />} />
-            <Route path="reset-password" element={<RequestResetPassword />} />
-            <Route path="reset-password/:token" element={<ResetPassword />} />
-         </Route>
-      </Routes>
+      <QueryClientProvider client={queryClient}>
+         <Routes>
+            <Route path="/" element={<Layout />}>
+               <Route index element={<Main />} />
+               <Route path="playground" element={<Playground />} />
+               <Route path="courses" element={<AllCourses />} />
+               <Route path="login" element={<Login />} />
+               <Route path="signup" element={<Signup />} />
+               <Route
+                  path="reset-password"
+                  element={<RequestResetPassword />}
+               />
+               <Route
+                  path="reset-password/:token"
+                  element={<ResetPassword />}
+               />
+            </Route>
+         </Routes>
+      </QueryClientProvider>
    )
 }
 

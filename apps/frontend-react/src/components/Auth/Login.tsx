@@ -2,12 +2,16 @@ import { useForm } from '@mantine/hooks'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Button, Input, PasswordInput } from 'ui'
+import { useLogInMutation } from '@api/generated'
+import { client } from '@api/client'
 
 const Login = () => {
+   const { mutate, data, error, isLoading } = useLogInMutation(client)
+
    const form = useForm({
       initialValues: {
-         email: '',
-         password: '',
+         email: 'rico@test.com',
+         password: '123456',
       },
       validationRules: {
          email: (value: string) => /^\S+@\S+$/.test(value),
@@ -19,8 +23,15 @@ const Login = () => {
       },
    })
 
-   const handleSubmit = value => {
-      console.log(value)
+   const handleSubmit = (values: { email: string; password: string }) => {
+      mutate(values, {
+         onSuccess: data => {
+            console.log(data)
+         },
+         onError: err => {
+            console.log(err)
+         },
+      })
    }
 
    return (
@@ -35,7 +46,7 @@ const Login = () => {
             />
             <PasswordInput label="Пароль" {...form.getInputProps('password')} />
 
-            <Button type="submit" fullWidth>
+            <Button type="submit" fullWidth loading={isLoading}>
                Войти
             </Button>
          </form>
