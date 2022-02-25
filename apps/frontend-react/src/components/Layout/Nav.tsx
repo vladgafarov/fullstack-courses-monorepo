@@ -28,8 +28,8 @@ const Nav = () => {
                </Menu>
             ) : (
                <>
+                  <Button onClick={() => navigate('/login')}>Вход</Button>
                   <Button onClick={() => navigate('/signup')} variant="outline">
-                     <Button onClick={() => navigate('/login')}>Вход</Button>
                      Регистрация
                   </Button>
                </>

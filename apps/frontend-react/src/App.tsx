@@ -10,6 +10,7 @@ import Signup from '@components/Auth/Signup'
 import RequestResetPassword from '@components/Auth/RequestResetPassword'
 import ResetPassword from '@components/Auth/ResetPassword'
 import { QueryClient, QueryClientProvider } from 'react-query'
+import Course from '@components/Course/Course'
 
 const queryClient = new QueryClient()
 
@@ -21,6 +22,7 @@ function App() {
                <Route index element={<Main />} />
                <Route path="playground" element={<Playground />} />
                <Route path="courses" element={<AllCourses />} />
+               <Route path="course/:id" element={<Course />} />
                <Route path="login" element={<Login />} />
                <Route path="signup" element={<Signup />} />
                <Route

@@ -1,10 +1,13 @@
 import { client } from '@api/client'
 import { useGetCoursesQuery } from '@api/generated'
 import { SimpleGrid } from '@mantine/core'
-import { Container } from 'ui'
+import { useNavigate } from 'react-router-dom'
+import { Button, Container } from 'ui'
 import CourseCard from './CourseCard'
 
 const Courses = () => {
+   const navigate = useNavigate()
+
    const { data, error, isLoading, isFetching } = useGetCoursesQuery(client, {
       take: 3,
    })
@@ -18,18 +21,27 @@ const Courses = () => {
          ) : error ? (
             <p>{JSON.stringify(error)}</p>
          ) : (
-            <SimpleGrid
-               breakpoints={[
-                  { minWidth: 'xs', cols: 1 },
-                  { minWidth: 'md', cols: 2 },
-                  { minWidth: 'lg', cols: 3 },
-               ]}
-               className="gap-8 my-6"
-            >
-               {data.courses.map(course => (
-                  <CourseCard key={course.id} data={course} />
-               ))}
-            </SimpleGrid>
+            <>
+               <SimpleGrid
+                  breakpoints={[
+                     { minWidth: 'xs', cols: 1 },
+                     { minWidth: 'md', cols: 2 },
+                     { minWidth: 'lg', cols: 3 },
+                  ]}
+                  className="gap-8 my-6"
+               >
+                  {data.courses.map(course => (
+                     <CourseCard key={course.id} data={course} />
+                  ))}
+               </SimpleGrid>
+               <Button
+                  onClick={() => navigate('/courses')}
+                  variant="outline"
+                  className="mx-auto block"
+               >
+                  Посмотреть все курсы
+               </Button>
+            </>
          )}
       </Container>
    )
