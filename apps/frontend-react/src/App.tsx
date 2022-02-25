@@ -21,7 +21,9 @@ function App() {
             <Route path="/" element={<Layout />}>
                <Route index element={<Main />} />
                <Route path="playground" element={<Playground />} />
-               <Route path="courses" element={<AllCourses />} />
+               <Route path="courses" element={<AllCourses />}>
+                  {/* <Route path=":page" element={<AllCourses />} /> */}
+               </Route>
                <Route path="course/:id" element={<Course />} />
                <Route path="login" element={<Login />} />
                <Route path="signup" element={<Signup />} />
