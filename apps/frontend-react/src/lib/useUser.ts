@@ -18,7 +18,7 @@ interface UseUser {
 
 const some = getCookies()
 
-export const useUser = (params?: UseUserParams) => {
+export const useUser = (params?: UseUserParams): Partial<User> => {
    const { data, isLoading, error, isFetching } = useCurrentUserQuery(
       client,
       params
@@ -30,5 +30,5 @@ export const useUser = (params?: UseUserParams) => {
    //    } as UseUser
    // }
 
-   return data?.currentUser
+   return data?.currentUser as Partial<User>
 }
