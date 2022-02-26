@@ -5,34 +5,53 @@ import { MdOutlineChat } from 'react-icons/md'
 import InfoPoint from './InfoPoint'
 import courseImg from '../../course.jpg'
 import { Button, Container } from 'ui'
-import { useGetCourseQuery } from '@api/generated'
-import { client } from '@api/client'
+import {
+   useGetCourseQuery,
+   useSignOutFromCourseMutation,
+   useSignUpForCourseMutation,
+} from '@api/generated'
 import { useParams } from 'react-router-dom'
+import { useQueryClient } from 'react-query'
+import Reviews from './Reviews'
 // import Reviews from './Reviews'
 
 const Course = () => {
    const { id } = useParams()
 
+   const queryClient = useQueryClient()
+
+   const { user } = useUser()
    const { data, error, isLoading } = useGetCourseQuery({
       id: +id,
    })
 
+   const { mutate: signUp, isLoading: isSignUpLoading } =
+      useSignUpForCourseMutation()
+   const { mutate: signOut, isLoading: isSignOutLoading } =
+      useSignOutFromCourseMutation()
+
    const signUpForCourse = () => {
-      // if (user) {
-      //    signUpForCourseMutation({ courseId: +id })
-      //       .unwrap()
-      //       .then(() => toast.success('Успешно записаны'))
-      //       .catch(err => toast.error('Не удалось записаться'))
-      // } else {
-      //    toast.error('Необходимо авторизоваться')
-      // }
+      if (user) {
+         signUp(
+            { courseId: +id },
+            {
+               onSuccess: () => {
+                  queryClient.invalidateQueries(['GetCourse', { id: +id }])
+               },
+            }
+         )
+      }
    }
 
    const signOutFromCourse = () => {
-      // signOutFromCourseMutation({ courseId: +id })
-      //    .unwrap()
-      //    .then(() => toast.success('Успешно вышли из курса'))
-      //    .catch(err => toast.error('Не удалось выйти из курса'))
+      signOut(
+         { courseId: +id },
+         {
+            onSuccess: () => {
+               queryClient.invalidateQueries(['GetCourse', { id: +id }])
+            },
+         }
+      )
    }
 
    return (
@@ -41,7 +60,6 @@ const Course = () => {
             {isLoading ? (
                <p>Загрузка...</p>
             ) : error ? (
-               // <DisplayError error={error} />
                <p>{JSON.stringify(error)}</p>
             ) : data ? (
                <>
@@ -81,16 +99,15 @@ const Course = () => {
                                     Вы записаны
                                  </p>
                                  <Button
-                                    // disabled={isSingOutLoading}
+                                    disabled={isSignOutLoading}
                                     onClick={signOutFromCourse}
-                                    // theme="light"
                                  >
                                     Выйти из курса
                                  </Button>
                               </>
                            ) : (
                               <Button
-                                 // disabled={isSignInLoading}
+                                 disabled={isSignUpLoading}
                                  onClick={signUpForCourse}
                                  className="mt-6"
                               >
@@ -108,12 +125,12 @@ const Course = () => {
                      </div>
                   </div>
 
-                  {/* <Reviews
+                  <Reviews
                      reviews={data.course.reviews}
                      currentUser={data.course.currentUser}
                      currentUserReview={data.course.currentUserReview}
                      courseId={data.course.id}
-                  /> */}
+                  />
                </>
             ) : null}
          </div>

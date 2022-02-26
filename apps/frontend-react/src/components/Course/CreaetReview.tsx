@@ -1,33 +1,28 @@
-import { useUpdateReviewMutation } from '@api/generated'
-import { Modal } from '@mantine/core'
+import { useCreateReviewMutation } from '@api/generated'
 import { useState } from 'react'
 import { useQueryClient } from 'react-query'
 import { Button, SetRatingStars } from 'ui'
 
-const UpdateReviewModal = ({ review, isOpen, onClose }) => {
-   const [reviewText, setReviewText] = useState<string>(review?.text)
-   const [star, setStar] = useState<number>(review.rating - 1)
+const CreateReview = ({ courseId, onClose }: { courseId: number; onClose }) => {
+   const [review, setReview] = useState<string>()
+   const [star, setStar] = useState<number>()
    const [hoverStar, setHoverStar] = useState<number>(undefined)
 
+   const { mutate, isLoading, error } = useCreateReviewMutation()
    const queryClient = useQueryClient()
-   const { mutate, data, isLoading, error } = useUpdateReviewMutation()
 
-   const handleSubmit = e => {
+   const createReview = e => {
       e.preventDefault()
 
       mutate(
          {
-            id: review.id,
+            courseId,
             rating: star + 1,
-            text: reviewText,
+            text: review,
          },
          {
-            onSuccess: data => {
-               queryClient.invalidateQueries('CurrentUser')
-               queryClient.invalidateQueries([
-                  'GetCourse',
-                  { id: +data.updateReview.courseId },
-               ])
+            onSuccess: () => {
+               queryClient.invalidateQueries(['GetCourse', { id: courseId }])
                onClose()
             },
          }
@@ -35,7 +30,7 @@ const UpdateReviewModal = ({ review, isOpen, onClose }) => {
    }
 
    return (
-      <Modal opened={isOpen} onClose={onClose} title="Обновить отзыв">
+      <div>
          <SetRatingStars
             star={star}
             hoverStar={hoverStar}
@@ -45,20 +40,20 @@ const UpdateReviewModal = ({ review, isOpen, onClose }) => {
 
          <form
             className="flex flex-col items-start space-y-3 mb-6"
-            onSubmit={handleSubmit}
+            onSubmit={createReview}
          >
             <textarea
-               value={reviewText}
-               onChange={e => setReviewText(e.target.value)}
+               value={review}
+               onChange={e => setReview(e.target.value)}
                className="border-2 border-blue-500 rounded-lg focus:ring-2 focus:ring-blue-400 outline-none w-full h-24 py-2 px-3"
             ></textarea>
             {error && <p>{JSON.stringify(error)}</p>}
             <Button type="submit" disabled={isNaN(star) || isLoading}>
-               Обновить отзыв
+               Оставить отзыв
             </Button>
          </form>
-      </Modal>
+      </div>
    )
 }
 
-export default UpdateReviewModal
+export default CreateReview

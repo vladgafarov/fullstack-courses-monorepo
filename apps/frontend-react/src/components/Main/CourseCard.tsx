@@ -1,10 +1,28 @@
-import { Course } from '@api/generated'
+import { Course, useSignUpForCourseMutation } from '@api/generated'
 import { Spoiler } from '@mantine/core'
 import courseImg from '../../course.jpg'
 import { Link } from 'react-router-dom'
 import { Button } from 'ui'
+import { useQueryClient } from 'react-query'
 
 const CourseCard = ({ data }: { data: Partial<Course> }) => {
+   const { mutate, isLoading, error } = useSignUpForCourseMutation()
+
+   const queryClient = useQueryClient()
+
+   const handleSignUp = () => {
+      mutate(
+         {
+            courseId: data.id,
+         },
+         {
+            onSuccess: () => {
+               queryClient.invalidateQueries('GetCourses')
+            },
+         }
+      )
+   }
+
    return (
       <div className="group shadow-lg rounded-xl bg-slate-200 basis-1/3 overflow-hidden flex flex-col hover:shadow-xl transition">
          <div className="relative h-36">
@@ -35,14 +53,12 @@ const CourseCard = ({ data }: { data: Partial<Course> }) => {
             </div>
             <div>
                <p className="font-bold py-4 text-green-600">{data.price} ₽</p>
-               {/* {error && <DisplayError error={error.message} />}*/}
                {data.currentUser ? (
                   <Button disabled>Вы записаны</Button>
                ) : (
-                  <Button>Записаться</Button>
-                  // <Button disabled={isLoading} onClick={signUpForCourse}>
-                  //    Записаться
-                  // </Button>
+                  <Button onClick={handleSignUp} disabled={isLoading}>
+                     Записаться
+                  </Button>
                )}
             </div>
          </div>

@@ -12,9 +12,13 @@ const DeleteReviewModal = ({ id, isOpen, onClose }) => {
       mutate(
          { id },
          {
-            onSuccess: () => {
-               onClose()
+            onSuccess: data => {
                queryClient.invalidateQueries('CurrentUser')
+               queryClient.invalidateQueries([
+                  'GetCourse',
+                  { id: +data.removeReview.courseId },
+               ])
+               onClose()
             },
          }
       )
