@@ -1,12 +1,17 @@
 import { useForm } from '@mantine/hooks'
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { Button, Input, PasswordInput } from 'ui'
 import { useLogInMutation } from '@api/generated'
 import { client } from '@api/client'
 
 const Login = () => {
-   const { mutate, data, error, isLoading } = useLogInMutation(client)
+   const { mutate, data, error, isLoading } = useLogInMutation()
+   const location = useLocation()
+   const navigate = useNavigate()
+
+   //@ts-ignore
+   const from = location.state?.from?.pathname || '/'
 
    const form = useForm({
       initialValues: {
@@ -26,7 +31,7 @@ const Login = () => {
    const handleSubmit = (values: { email: string; password: string }) => {
       mutate(values, {
          onSuccess: data => {
-            console.log(data)
+            navigate(from, { replace: true })
          },
          onError: err => {
             console.log(err)

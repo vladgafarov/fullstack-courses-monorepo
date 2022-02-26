@@ -1,15 +1,10 @@
-import { GraphQLClient } from 'graphql-request';
-import { RequestInit } from 'graphql-request/dist/types.dom';
 import { useMutation, UseMutationOptions, useQuery, UseQueryOptions } from 'react-query';
+import { fetchData } from '@api/fetcher';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
-
-function fetcher<TData, TVariables>(client: GraphQLClient, query: string, variables?: TVariables, headers?: RequestInit['headers']) {
-  return async (): Promise<TData> => client.request<TData, TVariables>(query, variables, headers);
-}
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -579,14 +574,10 @@ export const ChangePasswordDocument = `
 export const useChangePasswordMutation = <
       TError = unknown,
       TContext = unknown
-    >(
-      client: GraphQLClient,
-      options?: UseMutationOptions<ChangePasswordMutation, TError, ChangePasswordMutationVariables, TContext>,
-      headers?: RequestInit['headers']
-    ) =>
+    >(options?: UseMutationOptions<ChangePasswordMutation, TError, ChangePasswordMutationVariables, TContext>) =>
     useMutation<ChangePasswordMutation, TError, ChangePasswordMutationVariables, TContext>(
       ['ChangePassword'],
-      (variables?: ChangePasswordMutationVariables) => fetcher<ChangePasswordMutation, ChangePasswordMutationVariables>(client, ChangePasswordDocument, variables, headers)(),
+      (variables?: ChangePasswordMutationVariables) => fetchData<ChangePasswordMutation, ChangePasswordMutationVariables>(ChangePasswordDocument, variables)(),
       options
     );
 export const ConfirmUserDocument = `
@@ -599,14 +590,10 @@ export const ConfirmUserDocument = `
 export const useConfirmUserMutation = <
       TError = unknown,
       TContext = unknown
-    >(
-      client: GraphQLClient,
-      options?: UseMutationOptions<ConfirmUserMutation, TError, ConfirmUserMutationVariables, TContext>,
-      headers?: RequestInit['headers']
-    ) =>
+    >(options?: UseMutationOptions<ConfirmUserMutation, TError, ConfirmUserMutationVariables, TContext>) =>
     useMutation<ConfirmUserMutation, TError, ConfirmUserMutationVariables, TContext>(
       ['ConfirmUser'],
-      (variables?: ConfirmUserMutationVariables) => fetcher<ConfirmUserMutation, ConfirmUserMutationVariables>(client, ConfirmUserDocument, variables, headers)(),
+      (variables?: ConfirmUserMutationVariables) => fetchData<ConfirmUserMutation, ConfirmUserMutationVariables>(ConfirmUserDocument, variables)(),
       options
     );
 export const CreateCourseDocument = `
@@ -623,14 +610,10 @@ export const CreateCourseDocument = `
 export const useCreateCourseMutation = <
       TError = unknown,
       TContext = unknown
-    >(
-      client: GraphQLClient,
-      options?: UseMutationOptions<CreateCourseMutation, TError, CreateCourseMutationVariables, TContext>,
-      headers?: RequestInit['headers']
-    ) =>
+    >(options?: UseMutationOptions<CreateCourseMutation, TError, CreateCourseMutationVariables, TContext>) =>
     useMutation<CreateCourseMutation, TError, CreateCourseMutationVariables, TContext>(
       ['CreateCourse'],
-      (variables?: CreateCourseMutationVariables) => fetcher<CreateCourseMutation, CreateCourseMutationVariables>(client, CreateCourseDocument, variables, headers)(),
+      (variables?: CreateCourseMutationVariables) => fetchData<CreateCourseMutation, CreateCourseMutationVariables>(CreateCourseDocument, variables)(),
       options
     );
 export const CreateReviewDocument = `
@@ -643,14 +626,10 @@ export const CreateReviewDocument = `
 export const useCreateReviewMutation = <
       TError = unknown,
       TContext = unknown
-    >(
-      client: GraphQLClient,
-      options?: UseMutationOptions<CreateReviewMutation, TError, CreateReviewMutationVariables, TContext>,
-      headers?: RequestInit['headers']
-    ) =>
+    >(options?: UseMutationOptions<CreateReviewMutation, TError, CreateReviewMutationVariables, TContext>) =>
     useMutation<CreateReviewMutation, TError, CreateReviewMutationVariables, TContext>(
       ['CreateReview'],
-      (variables?: CreateReviewMutationVariables) => fetcher<CreateReviewMutation, CreateReviewMutationVariables>(client, CreateReviewDocument, variables, headers)(),
+      (variables?: CreateReviewMutationVariables) => fetchData<CreateReviewMutation, CreateReviewMutationVariables>(CreateReviewDocument, variables)(),
       options
     );
 export const DeleteReviewDocument = `
@@ -665,14 +644,10 @@ export const DeleteReviewDocument = `
 export const useDeleteReviewMutation = <
       TError = unknown,
       TContext = unknown
-    >(
-      client: GraphQLClient,
-      options?: UseMutationOptions<DeleteReviewMutation, TError, DeleteReviewMutationVariables, TContext>,
-      headers?: RequestInit['headers']
-    ) =>
+    >(options?: UseMutationOptions<DeleteReviewMutation, TError, DeleteReviewMutationVariables, TContext>) =>
     useMutation<DeleteReviewMutation, TError, DeleteReviewMutationVariables, TContext>(
       ['DeleteReview'],
-      (variables?: DeleteReviewMutationVariables) => fetcher<DeleteReviewMutation, DeleteReviewMutationVariables>(client, DeleteReviewDocument, variables, headers)(),
+      (variables?: DeleteReviewMutationVariables) => fetchData<DeleteReviewMutation, DeleteReviewMutationVariables>(DeleteReviewDocument, variables)(),
       options
     );
 export const LogInDocument = `
@@ -686,14 +661,10 @@ export const LogInDocument = `
 export const useLogInMutation = <
       TError = unknown,
       TContext = unknown
-    >(
-      client: GraphQLClient,
-      options?: UseMutationOptions<LogInMutation, TError, LogInMutationVariables, TContext>,
-      headers?: RequestInit['headers']
-    ) =>
+    >(options?: UseMutationOptions<LogInMutation, TError, LogInMutationVariables, TContext>) =>
     useMutation<LogInMutation, TError, LogInMutationVariables, TContext>(
       ['LogIn'],
-      (variables?: LogInMutationVariables) => fetcher<LogInMutation, LogInMutationVariables>(client, LogInDocument, variables, headers)(),
+      (variables?: LogInMutationVariables) => fetchData<LogInMutation, LogInMutationVariables>(LogInDocument, variables)(),
       options
     );
 export const LogOutDocument = `
@@ -706,14 +677,10 @@ export const LogOutDocument = `
 export const useLogOutMutation = <
       TError = unknown,
       TContext = unknown
-    >(
-      client: GraphQLClient,
-      options?: UseMutationOptions<LogOutMutation, TError, LogOutMutationVariables, TContext>,
-      headers?: RequestInit['headers']
-    ) =>
+    >(options?: UseMutationOptions<LogOutMutation, TError, LogOutMutationVariables, TContext>) =>
     useMutation<LogOutMutation, TError, LogOutMutationVariables, TContext>(
       ['LogOut'],
-      (variables?: LogOutMutationVariables) => fetcher<LogOutMutation, LogOutMutationVariables>(client, LogOutDocument, variables, headers)(),
+      (variables?: LogOutMutationVariables) => fetchData<LogOutMutation, LogOutMutationVariables>(LogOutDocument, variables)(),
       options
     );
 export const RemoveCourseDocument = `
@@ -727,14 +694,10 @@ export const RemoveCourseDocument = `
 export const useRemoveCourseMutation = <
       TError = unknown,
       TContext = unknown
-    >(
-      client: GraphQLClient,
-      options?: UseMutationOptions<RemoveCourseMutation, TError, RemoveCourseMutationVariables, TContext>,
-      headers?: RequestInit['headers']
-    ) =>
+    >(options?: UseMutationOptions<RemoveCourseMutation, TError, RemoveCourseMutationVariables, TContext>) =>
     useMutation<RemoveCourseMutation, TError, RemoveCourseMutationVariables, TContext>(
       ['RemoveCourse'],
-      (variables?: RemoveCourseMutationVariables) => fetcher<RemoveCourseMutation, RemoveCourseMutationVariables>(client, RemoveCourseDocument, variables, headers)(),
+      (variables?: RemoveCourseMutationVariables) => fetchData<RemoveCourseMutation, RemoveCourseMutationVariables>(RemoveCourseDocument, variables)(),
       options
     );
 export const RemoveReviewDocument = `
@@ -748,14 +711,10 @@ export const RemoveReviewDocument = `
 export const useRemoveReviewMutation = <
       TError = unknown,
       TContext = unknown
-    >(
-      client: GraphQLClient,
-      options?: UseMutationOptions<RemoveReviewMutation, TError, RemoveReviewMutationVariables, TContext>,
-      headers?: RequestInit['headers']
-    ) =>
+    >(options?: UseMutationOptions<RemoveReviewMutation, TError, RemoveReviewMutationVariables, TContext>) =>
     useMutation<RemoveReviewMutation, TError, RemoveReviewMutationVariables, TContext>(
       ['RemoveReview'],
-      (variables?: RemoveReviewMutationVariables) => fetcher<RemoveReviewMutation, RemoveReviewMutationVariables>(client, RemoveReviewDocument, variables, headers)(),
+      (variables?: RemoveReviewMutationVariables) => fetchData<RemoveReviewMutation, RemoveReviewMutationVariables>(RemoveReviewDocument, variables)(),
       options
     );
 export const RemoveUserDocument = `
@@ -769,14 +728,10 @@ export const RemoveUserDocument = `
 export const useRemoveUserMutation = <
       TError = unknown,
       TContext = unknown
-    >(
-      client: GraphQLClient,
-      options?: UseMutationOptions<RemoveUserMutation, TError, RemoveUserMutationVariables, TContext>,
-      headers?: RequestInit['headers']
-    ) =>
+    >(options?: UseMutationOptions<RemoveUserMutation, TError, RemoveUserMutationVariables, TContext>) =>
     useMutation<RemoveUserMutation, TError, RemoveUserMutationVariables, TContext>(
       ['RemoveUser'],
-      (variables?: RemoveUserMutationVariables) => fetcher<RemoveUserMutation, RemoveUserMutationVariables>(client, RemoveUserDocument, variables, headers)(),
+      (variables?: RemoveUserMutationVariables) => fetchData<RemoveUserMutation, RemoveUserMutationVariables>(RemoveUserDocument, variables)(),
       options
     );
 export const RequestPasswordResetDocument = `
@@ -787,14 +742,10 @@ export const RequestPasswordResetDocument = `
 export const useRequestPasswordResetMutation = <
       TError = unknown,
       TContext = unknown
-    >(
-      client: GraphQLClient,
-      options?: UseMutationOptions<RequestPasswordResetMutation, TError, RequestPasswordResetMutationVariables, TContext>,
-      headers?: RequestInit['headers']
-    ) =>
+    >(options?: UseMutationOptions<RequestPasswordResetMutation, TError, RequestPasswordResetMutationVariables, TContext>) =>
     useMutation<RequestPasswordResetMutation, TError, RequestPasswordResetMutationVariables, TContext>(
       ['RequestPasswordReset'],
-      (variables?: RequestPasswordResetMutationVariables) => fetcher<RequestPasswordResetMutation, RequestPasswordResetMutationVariables>(client, RequestPasswordResetDocument, variables, headers)(),
+      (variables?: RequestPasswordResetMutationVariables) => fetchData<RequestPasswordResetMutation, RequestPasswordResetMutationVariables>(RequestPasswordResetDocument, variables)(),
       options
     );
 export const ResetPasswordDocument = `
@@ -810,14 +761,10 @@ export const ResetPasswordDocument = `
 export const useResetPasswordMutation = <
       TError = unknown,
       TContext = unknown
-    >(
-      client: GraphQLClient,
-      options?: UseMutationOptions<ResetPasswordMutation, TError, ResetPasswordMutationVariables, TContext>,
-      headers?: RequestInit['headers']
-    ) =>
+    >(options?: UseMutationOptions<ResetPasswordMutation, TError, ResetPasswordMutationVariables, TContext>) =>
     useMutation<ResetPasswordMutation, TError, ResetPasswordMutationVariables, TContext>(
       ['ResetPassword'],
-      (variables?: ResetPasswordMutationVariables) => fetcher<ResetPasswordMutation, ResetPasswordMutationVariables>(client, ResetPasswordDocument, variables, headers)(),
+      (variables?: ResetPasswordMutationVariables) => fetchData<ResetPasswordMutation, ResetPasswordMutationVariables>(ResetPasswordDocument, variables)(),
       options
     );
 export const SignOutFromCourseDocument = `
@@ -831,14 +778,10 @@ export const SignOutFromCourseDocument = `
 export const useSignOutFromCourseMutation = <
       TError = unknown,
       TContext = unknown
-    >(
-      client: GraphQLClient,
-      options?: UseMutationOptions<SignOutFromCourseMutation, TError, SignOutFromCourseMutationVariables, TContext>,
-      headers?: RequestInit['headers']
-    ) =>
+    >(options?: UseMutationOptions<SignOutFromCourseMutation, TError, SignOutFromCourseMutationVariables, TContext>) =>
     useMutation<SignOutFromCourseMutation, TError, SignOutFromCourseMutationVariables, TContext>(
       ['SignOutFromCourse'],
-      (variables?: SignOutFromCourseMutationVariables) => fetcher<SignOutFromCourseMutation, SignOutFromCourseMutationVariables>(client, SignOutFromCourseDocument, variables, headers)(),
+      (variables?: SignOutFromCourseMutationVariables) => fetchData<SignOutFromCourseMutation, SignOutFromCourseMutationVariables>(SignOutFromCourseDocument, variables)(),
       options
     );
 export const SignUpForCourseDocument = `
@@ -852,14 +795,10 @@ export const SignUpForCourseDocument = `
 export const useSignUpForCourseMutation = <
       TError = unknown,
       TContext = unknown
-    >(
-      client: GraphQLClient,
-      options?: UseMutationOptions<SignUpForCourseMutation, TError, SignUpForCourseMutationVariables, TContext>,
-      headers?: RequestInit['headers']
-    ) =>
+    >(options?: UseMutationOptions<SignUpForCourseMutation, TError, SignUpForCourseMutationVariables, TContext>) =>
     useMutation<SignUpForCourseMutation, TError, SignUpForCourseMutationVariables, TContext>(
       ['SignUpForCourse'],
-      (variables?: SignUpForCourseMutationVariables) => fetcher<SignUpForCourseMutation, SignUpForCourseMutationVariables>(client, SignUpForCourseDocument, variables, headers)(),
+      (variables?: SignUpForCourseMutationVariables) => fetchData<SignUpForCourseMutation, SignUpForCourseMutationVariables>(SignUpForCourseDocument, variables)(),
       options
     );
 export const SignUpDocument = `
@@ -875,14 +814,10 @@ export const SignUpDocument = `
 export const useSignUpMutation = <
       TError = unknown,
       TContext = unknown
-    >(
-      client: GraphQLClient,
-      options?: UseMutationOptions<SignUpMutation, TError, SignUpMutationVariables, TContext>,
-      headers?: RequestInit['headers']
-    ) =>
+    >(options?: UseMutationOptions<SignUpMutation, TError, SignUpMutationVariables, TContext>) =>
     useMutation<SignUpMutation, TError, SignUpMutationVariables, TContext>(
       ['SignUp'],
-      (variables?: SignUpMutationVariables) => fetcher<SignUpMutation, SignUpMutationVariables>(client, SignUpDocument, variables, headers)(),
+      (variables?: SignUpMutationVariables) => fetchData<SignUpMutation, SignUpMutationVariables>(SignUpDocument, variables)(),
       options
     );
 export const UpdateReviewDocument = `
@@ -899,14 +834,10 @@ export const UpdateReviewDocument = `
 export const useUpdateReviewMutation = <
       TError = unknown,
       TContext = unknown
-    >(
-      client: GraphQLClient,
-      options?: UseMutationOptions<UpdateReviewMutation, TError, UpdateReviewMutationVariables, TContext>,
-      headers?: RequestInit['headers']
-    ) =>
+    >(options?: UseMutationOptions<UpdateReviewMutation, TError, UpdateReviewMutationVariables, TContext>) =>
     useMutation<UpdateReviewMutation, TError, UpdateReviewMutationVariables, TContext>(
       ['UpdateReview'],
-      (variables?: UpdateReviewMutationVariables) => fetcher<UpdateReviewMutation, UpdateReviewMutationVariables>(client, UpdateReviewDocument, variables, headers)(),
+      (variables?: UpdateReviewMutationVariables) => fetchData<UpdateReviewMutation, UpdateReviewMutationVariables>(UpdateReviewDocument, variables)(),
       options
     );
 export const CurrentUserDocument = `
@@ -950,14 +881,12 @@ export const useCurrentUserQuery = <
       TData = CurrentUserQuery,
       TError = unknown
     >(
-      client: GraphQLClient,
       variables?: CurrentUserQueryVariables,
-      options?: UseQueryOptions<CurrentUserQuery, TError, TData>,
-      headers?: RequestInit['headers']
+      options?: UseQueryOptions<CurrentUserQuery, TError, TData>
     ) =>
     useQuery<CurrentUserQuery, TError, TData>(
       variables === undefined ? ['CurrentUser'] : ['CurrentUser', variables],
-      fetcher<CurrentUserQuery, CurrentUserQueryVariables>(client, CurrentUserDocument, variables, headers),
+      fetchData<CurrentUserQuery, CurrentUserQueryVariables>(CurrentUserDocument, variables),
       options
     );
 export const GetCourseDocument = `
@@ -995,14 +924,12 @@ export const useGetCourseQuery = <
       TData = GetCourseQuery,
       TError = unknown
     >(
-      client: GraphQLClient,
       variables: GetCourseQueryVariables,
-      options?: UseQueryOptions<GetCourseQuery, TError, TData>,
-      headers?: RequestInit['headers']
+      options?: UseQueryOptions<GetCourseQuery, TError, TData>
     ) =>
     useQuery<GetCourseQuery, TError, TData>(
       ['GetCourse', variables],
-      fetcher<GetCourseQuery, GetCourseQueryVariables>(client, GetCourseDocument, variables, headers),
+      fetchData<GetCourseQuery, GetCourseQueryVariables>(GetCourseDocument, variables),
       options
     );
 export const GetCoursesDocument = `
@@ -1035,14 +962,12 @@ export const useGetCoursesQuery = <
       TData = GetCoursesQuery,
       TError = unknown
     >(
-      client: GraphQLClient,
       variables?: GetCoursesQueryVariables,
-      options?: UseQueryOptions<GetCoursesQuery, TError, TData>,
-      headers?: RequestInit['headers']
+      options?: UseQueryOptions<GetCoursesQuery, TError, TData>
     ) =>
     useQuery<GetCoursesQuery, TError, TData>(
       variables === undefined ? ['GetCourses'] : ['GetCourses', variables],
-      fetcher<GetCoursesQuery, GetCoursesQueryVariables>(client, GetCoursesDocument, variables, headers),
+      fetchData<GetCoursesQuery, GetCoursesQueryVariables>(GetCoursesDocument, variables),
       options
     );
 export const GetReviewsDocument = `
@@ -1068,14 +993,12 @@ export const useGetReviewsQuery = <
       TData = GetReviewsQuery,
       TError = unknown
     >(
-      client: GraphQLClient,
       variables?: GetReviewsQueryVariables,
-      options?: UseQueryOptions<GetReviewsQuery, TError, TData>,
-      headers?: RequestInit['headers']
+      options?: UseQueryOptions<GetReviewsQuery, TError, TData>
     ) =>
     useQuery<GetReviewsQuery, TError, TData>(
       variables === undefined ? ['GetReviews'] : ['GetReviews', variables],
-      fetcher<GetReviewsQuery, GetReviewsQueryVariables>(client, GetReviewsDocument, variables, headers),
+      fetchData<GetReviewsQuery, GetReviewsQueryVariables>(GetReviewsDocument, variables),
       options
     );
 export const GetUsersDocument = `
@@ -1096,13 +1019,11 @@ export const useGetUsersQuery = <
       TData = GetUsersQuery,
       TError = unknown
     >(
-      client: GraphQLClient,
       variables?: GetUsersQueryVariables,
-      options?: UseQueryOptions<GetUsersQuery, TError, TData>,
-      headers?: RequestInit['headers']
+      options?: UseQueryOptions<GetUsersQuery, TError, TData>
     ) =>
     useQuery<GetUsersQuery, TError, TData>(
       variables === undefined ? ['GetUsers'] : ['GetUsers', variables],
-      fetcher<GetUsersQuery, GetUsersQueryVariables>(client, GetUsersDocument, variables, headers),
+      fetchData<GetUsersQuery, GetUsersQueryVariables>(GetUsersDocument, variables),
       options
     );

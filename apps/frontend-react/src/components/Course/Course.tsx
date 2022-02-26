@@ -13,7 +13,7 @@ import { useParams } from 'react-router-dom'
 const Course = () => {
    const { id } = useParams()
 
-   const { data, error, isLoading } = useGetCourseQuery(client, {
+   const { data, error, isLoading } = useGetCourseQuery({
       id: +id,
    })
 

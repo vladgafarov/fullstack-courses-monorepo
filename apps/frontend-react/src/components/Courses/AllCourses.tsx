@@ -6,13 +6,13 @@ import { SimpleGrid } from '@mantine/core'
 import { useMemo } from 'react'
 import { Container } from 'ui'
 import { perPage } from '@lib/config'
-import { useParams, useSearchParams } from 'react-router-dom'
+import { useSearchParams } from 'react-router-dom'
 
 const AllCourses = () => {
    const [search] = useSearchParams()
    const page = +(search.get('page') ?? 1)
 
-   const { data, error, isLoading } = useGetCoursesQuery(client, {
+   const { data, error, isLoading } = useGetCoursesQuery({
       take: 3,
       skip: perPage * (page - 1),
    })

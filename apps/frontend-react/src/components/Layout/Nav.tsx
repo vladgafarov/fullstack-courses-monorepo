@@ -7,6 +7,7 @@ import { Button } from 'ui'
 const Nav = () => {
    const navigate = useNavigate()
    const user = useUser()
+   console.log(user)
 
    return (
       <div className="flex items-center space-x-3">
@@ -23,7 +24,12 @@ const Nav = () => {
                   }
                   transition="rotate-right"
                >
-                  <Menu.Item className="hover:bg-blue-100">Профиль</Menu.Item>
+                  <Menu.Item
+                     onClick={() => navigate('/profile')}
+                     className="hover:bg-blue-100"
+                  >
+                     Профиль
+                  </Menu.Item>
                   <Menu.Item className="hover:bg-blue-100">Выйти</Menu.Item>
                </Menu>
             ) : (

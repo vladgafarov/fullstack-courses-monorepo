@@ -8,9 +8,14 @@ import CourseCard from './CourseCard'
 const Courses = () => {
    const navigate = useNavigate()
 
-   const { data, error, isLoading, isFetching } = useGetCoursesQuery(client, {
-      take: 3,
-   })
+   const { data, error, isLoading, isFetching } = useGetCoursesQuery(
+      {
+         take: 3,
+      },
+      {
+         retry: false,
+      }
+   )
 
    return (
       <Container id="courses">

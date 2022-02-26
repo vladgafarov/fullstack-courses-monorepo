@@ -63,7 +63,7 @@ const Pagination = ({ length, page }: { length: number; page: number }) => {
                   return (
                      <Button
                         onClick={() => handleButtonClick(i + 1)}
-                        variant={i + 1 === page ? 'outline' : 'default'}
+                        variant={i + 1 === page ? 'default' : 'outline'}
                         key={i}
                         className="px-2 lg:px-4 py-1 lg:py-2"
                      >

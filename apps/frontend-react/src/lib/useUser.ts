@@ -1,4 +1,4 @@
-import { client, getCookies } from '@api/client'
+import { client } from '@api/client'
 import { useCurrentUserQuery, User } from '@api/generated'
 import { isEmpty } from 'lodash'
 
@@ -16,19 +16,12 @@ interface UseUser {
    isFetching: boolean
 }
 
-const some = getCookies()
-
 export const useUser = (params?: UseUserParams): Partial<User> => {
-   const { data, isLoading, error, isFetching } = useCurrentUserQuery(
-      client,
-      params
-   )
+   const { data, isLoading, error, isFetching } = useCurrentUserQuery(params)
 
-   // if (isEmpty(data?.currentUser)) {
-   //    return {
-   //       user: undefined,
-   //    } as UseUser
-   // }
+   if (isEmpty(data?.currentUser)) {
+      return null
+   }
 
    return data?.currentUser as Partial<User>
 }

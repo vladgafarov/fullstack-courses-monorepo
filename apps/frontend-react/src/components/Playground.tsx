@@ -13,8 +13,16 @@ import { Input, Button as ButtonStyle, ButtonAlert } from 'ui'
 import img from '../logo.svg'
 import { DiCode } from 'react-icons/di'
 import { Link } from 'react-router-dom'
+import { ChangeEvent, useState } from 'react'
+import { useCreateCourseMutation } from '@api/generated'
 
 const Playground = () => {
+   const [image, setImage] = useState<string>()
+
+   const { mutate, error, data } = useCreateCourseMutation()
+
+   console.log(error)
+
    const form = useForm({
       initialValues: {
          email: '',
@@ -36,9 +44,39 @@ const Playground = () => {
       },
    })
 
+   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
+      if (e.target.files[0]) {
+         setImage(URL.createObjectURL(e.target.files[0]))
+      }
+   }
+
+   const handle = async () => {
+      let file
+      if (image) {
+         file = await fetch(image)
+            .then(r => r.blob())
+            .then(
+               blobFile =>
+                  new File([blobFile], `${Date.now()}`, {
+                     type: 'image/jpg',
+                  })
+            )
+      }
+
+      mutate({
+         title: 'delte',
+         description: 'delete',
+         price: 1200,
+         file,
+      })
+   }
+
    return (
       <Container size="xs" className="mt-6">
          <Link to="/">Home</Link>
+
+         <input type="file" onChange={handleImageChange} />
+         <button onClick={handle}>add course</button>
 
          <Title order={4} className="mb-2">
             Регистрация
