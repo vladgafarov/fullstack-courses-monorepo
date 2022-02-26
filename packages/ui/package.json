@@ -16,6 +16,7 @@
       "@mantine/hooks": "^3.6.9",
       "@mantine/modals": "^3.6.9",
       "@mantine/notifications": "^3.6.9",
-      "classnames": "^2.3.1"
+      "classnames": "^2.3.1",
+      "react-icons": "^4.3.1"
    }
 }

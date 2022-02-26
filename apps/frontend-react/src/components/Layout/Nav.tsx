@@ -6,8 +6,7 @@ import { Button } from 'ui'
 
 const Nav = () => {
    const navigate = useNavigate()
-   const user = useUser()
-   console.log(user)
+   const { user } = useUser()
 
    return (
       <div className="flex items-center space-x-3">

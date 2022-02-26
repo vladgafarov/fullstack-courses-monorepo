@@ -1,4 +1,14 @@
+import { GraphQLClient } from 'graphql-request'
 import { client, getCookies } from './client'
+import { RefreshTokensQuery } from './queries/refresh-tokens'
+
+const refreshTokens = async (client: GraphQLClient, refreshToken: string) => {
+   await client
+      .request(RefreshTokensQuery, undefined, {
+         authorization: `Bearer ${refreshToken}`,
+      })
+      .catch(err => console.log(err))
+}
 
 export const fetchData = <TData, TVariables>(
    query: string,
@@ -6,12 +16,24 @@ export const fetchData = <TData, TVariables>(
    options?: RequestInit['headers']
 ): (() => Promise<TData>) => {
    return async () => {
-      const cookies = getCookies()
+      let cookies = getCookies()
+      let requestHeaders: HeadersInit = {}
 
       try {
-         const data = await client.request(query, variables, {
-            authorization: `Bearer ${cookies['access-token']}`,
-         })
+         if (!cookies['access-token'] && cookies['refresh-token']) {
+            await refreshTokens(client, cookies['refresh-token'])
+         }
+
+         cookies = getCookies()
+
+         if (cookies['access-token']) {
+            requestHeaders = {
+               authorization: `Bearer ${cookies['access-token']}`,
+            }
+         }
+
+         const data = await client.request(query, variables, requestHeaders)
+
          return data
       } catch (err) {
          const parsedError = JSON.parse(JSON.stringify(err))

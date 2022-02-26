@@ -2,7 +2,7 @@ import { useUser } from '@lib/useUser'
 import { Navigate, useLocation } from 'react-router-dom'
 
 const RequireAuth = ({ children }) => {
-   const user = useUser()
+   const { user } = useUser()
    const location = useLocation()
 
    if (!user) {

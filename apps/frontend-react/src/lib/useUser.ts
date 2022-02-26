@@ -16,12 +16,21 @@ interface UseUser {
    isFetching: boolean
 }
 
-export const useUser = (params?: UseUserParams): Partial<User> => {
+export const useUser = (params?: UseUserParams): UseUser => {
    const { data, isLoading, error, isFetching } = useCurrentUserQuery(params)
 
-   if (isEmpty(data?.currentUser)) {
-      return null
-   }
+   // if (isEmpty(data?.currentUser)) {
+   //    return {
+   //       user: null,
+   //    } as UseUser
+   // }
 
-   return data?.currentUser as Partial<User>
+   // return data?.currentUser
+
+   return {
+      isLoading,
+      isFetching,
+      user: data?.currentUser as User,
+      error: error as string,
+   }
 }

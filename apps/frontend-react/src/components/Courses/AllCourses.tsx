@@ -1,4 +1,3 @@
-import { client } from '@api/client'
 import { useGetCoursesQuery } from '@api/generated'
 import Pagination from '@components/common/Pagination'
 import CourseCard from '@components/Main/CourseCard'
@@ -17,7 +16,10 @@ const AllCourses = () => {
       skip: perPage * (page - 1),
    })
 
-   const count = useMemo(() => data?.courses[0]?.count, [data?.courses])
+   const count = useMemo(
+      () => data?.courses[0]?.count,
+      [data?.courses[0].count]
+   )
 
    return (
       <Container>

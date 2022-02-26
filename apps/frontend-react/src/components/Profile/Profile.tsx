@@ -1,16 +1,18 @@
 import { useUser } from '@lib/useUser'
 import { FaEnvelope, FaUser } from 'react-icons/fa'
-import { Link, Outlet, useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { Button, Container } from 'ui'
 
 const Profile = () => {
-   const user = useUser()
+   const { user, isLoading, isFetching } = useUser()
 
    return (
       <Container>
          <h1 className="text-2xl">Профиль</h1>
 
-         {!user ? (
+         {isLoading || isFetching ? (
+            <p>Загрузка...</p>
+         ) : !user ? (
             <p>Не удалось получить информацию о пользователе</p>
          ) : (
             <div className="mt-6">
