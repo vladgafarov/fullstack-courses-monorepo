@@ -3,8 +3,15 @@ import { format } from 'date-fns'
 import { FiEdit } from 'react-icons/fi'
 import { RiDeleteBin7Line } from 'react-icons/ri'
 import { Link } from 'react-router-dom'
+import { useModals } from '@mantine/modals'
+import UpdateReviewModal from './UpdateReviewModal'
+import { useState } from 'react'
+import DeleteReviewModal from './DeleteReviewModal'
 
 const UserReview = ({ review }) => {
+   const [isUpdateOpen, setIsUpdateOpen] = useState(false)
+   const [isDeleteOpen, setIsDeleteOpen] = useState(false)
+
    return (
       <>
          <div className="bg-slate-100 py-3 px-4 mb-6 rounded-xl">
@@ -23,13 +30,13 @@ const UserReview = ({ review }) => {
                {review.currentUser && (
                   <div className="flex items-center space-x-2 text-slate-400">
                      <button
-                        /*onClick={onUpdateOpen} */
+                        onClick={() => setIsUpdateOpen(true)}
                         className="hover:text-slate-700 cursor-pointer"
                      >
                         <FiEdit />
                      </button>
                      <button
-                        // onClick={onDeleteOpen}
+                        onClick={() => setIsDeleteOpen(true)}
                         className="hover:text-slate-700 cursor-pointer"
                      >
                         <RiDeleteBin7Line />
@@ -52,16 +59,17 @@ const UserReview = ({ review }) => {
                </p>
             )}
          </div>
-         {/* <UpdateReviewModal
+         <UpdateReviewModal
             review={review}
             isOpen={isUpdateOpen}
-            onClose={onUpdateClose}
+            onClose={() => setIsUpdateOpen(false)}
          />
+
          <DeleteReviewModal
             id={review.id}
             isOpen={isDeleteOpen}
-            onClose={onDeleteClose}
-         /> */}
+            onClose={() => setIsDeleteOpen(false)}
+         />
       </>
    )
 }

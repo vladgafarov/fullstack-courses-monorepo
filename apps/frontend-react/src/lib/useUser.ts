@@ -30,7 +30,9 @@ export const useUser = (params?: UseUserParams): UseUser => {
    return {
       isLoading,
       isFetching,
-      user: data?.currentUser as User,
+      user: isEmpty(data?.currentUser)
+         ? undefined
+         : (data?.currentUser as User),
       error: error as string,
    }
 }

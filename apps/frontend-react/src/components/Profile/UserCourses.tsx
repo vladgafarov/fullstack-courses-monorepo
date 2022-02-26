@@ -43,7 +43,7 @@ const UserCourses = () => {
                         ]}
                         className="gap-8 my-6"
                      >
-                        {user.courses.map(course => (
+                        {user?.courses?.map(course => (
                            <CourseCard data={course} key={course.id} />
                         ))}
                      </SimpleGrid>

@@ -3,10 +3,16 @@ import React from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { Button, Input, PasswordInput } from 'ui'
 import { useLogInMutation } from '@api/generated'
-import { client } from '@api/client'
+import { useQueryClient } from 'react-query'
 
 const Login = () => {
-   const { mutate, data, error, isLoading } = useLogInMutation()
+   const queryClient = useQueryClient()
+
+   const { mutate, data, error, isLoading } = useLogInMutation({
+      onSuccess: () => {
+         queryClient.invalidateQueries('CurrentUser')
+      },
+   })
    const location = useLocation()
    const navigate = useNavigate()
 
