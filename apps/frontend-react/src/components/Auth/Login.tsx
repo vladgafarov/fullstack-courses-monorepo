@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { Button, Input, PasswordInput } from 'ui'
 import { useLogInMutation } from '@api/generated'
 import { useQueryClient } from 'react-query'
+import { DisplayError } from 'ui'
 
 const Login = () => {
    const queryClient = useQueryClient()
@@ -56,6 +57,8 @@ const Login = () => {
                {...form.getInputProps('email')}
             />
             <PasswordInput label="Пароль" {...form.getInputProps('password')} />
+
+            {error && <DisplayError error={error} />}
 
             <Button type="submit" fullWidth loading={isLoading}>
                Войти

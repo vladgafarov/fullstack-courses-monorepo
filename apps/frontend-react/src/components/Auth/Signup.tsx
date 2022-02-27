@@ -1,9 +1,16 @@
+import { useSignUpMutation } from '@api/generated'
 import { useForm } from '@mantine/hooks'
 import React from 'react'
-import { Link } from 'react-router-dom'
-import { Button, Input, PasswordInput } from 'ui'
+import { useQueryClient } from 'react-query'
+import { Link, useNavigate } from 'react-router-dom'
+import { Button, DisplayError, Input, PasswordInput } from 'ui'
 
 const SingUp = () => {
+   const { mutate, isLoading, error } = useSignUpMutation()
+
+   const navigate = useNavigate()
+   const queryClient = useQueryClient()
+
    const form = useForm({
       initialValues: {
          email: '',
@@ -26,7 +33,12 @@ const SingUp = () => {
    })
 
    const handleSubmit = value => {
-      console.log(value)
+      mutate(value, {
+         onSuccess: () => {
+            queryClient.invalidateQueries('CurrentUser')
+            navigate('/')
+         },
+      })
    }
 
    return (
@@ -43,7 +55,9 @@ const SingUp = () => {
             />
             <PasswordInput label="Пароль" {...form.getInputProps('password')} />
 
-            <Button type="submit" fullWidth>
+            {error && <DisplayError error={error} />}
+
+            <Button type="submit" fullWidth disabled={isLoading}>
                Зарегистрироваться
             </Button>
          </form>

@@ -1,8 +1,13 @@
+import { useRequestPasswordResetMutation } from '@api/generated'
 import { useForm } from '@mantine/hooks'
+import { useNotifications } from '@mantine/notifications'
 import { Link } from 'react-router-dom'
-import { Button, Input } from 'ui'
+import { Button, DisplayError, Input } from 'ui'
 
 const RequestResetPassword = () => {
+   const { mutate, isLoading, error } = useRequestPasswordResetMutation()
+   const notifications = useNotifications()
+
    const form = useForm({
       initialValues: {
          email: '',
@@ -16,7 +21,16 @@ const RequestResetPassword = () => {
    })
 
    const handleSubmit = value => {
-      console.log(value)
+      mutate(value, {
+         onSuccess: () => {
+            notifications.showNotification({
+               title: 'Запрос успешно отправлен',
+               message: 'Проверьте свою почту',
+               color: 'green',
+            })
+            form.reset()
+         },
+      })
    }
 
    return (
@@ -34,7 +48,9 @@ const RequestResetPassword = () => {
                {...form.getInputProps('email')}
             />
 
-            <Button type="submit" fullWidth>
+            {error && <DisplayError error={error} />}
+
+            <Button type="submit" fullWidth disabled={isLoading}>
                Отправить запрос
             </Button>
          </form>
