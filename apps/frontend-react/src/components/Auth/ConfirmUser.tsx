@@ -1,6 +1,6 @@
 import { useConfirmUserMutation } from '@api/generated'
 import { useEffect } from 'react'
-import { useParams, useSearchParams } from 'react-router-dom'
+import { Navigate, useParams, useSearchParams } from 'react-router-dom'
 import { Container, DisplayError } from 'ui'
 
 const ConfirmUser = () => {
@@ -15,6 +15,10 @@ const ConfirmUser = () => {
       }
       //eslint-disable-next-line
    }, [token])
+
+   if (!token) {
+      return <Navigate to="/" />
+   }
 
    return (
       <Container>
