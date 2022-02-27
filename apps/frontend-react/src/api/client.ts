@@ -10,9 +10,6 @@ export const getCookies = () => {
 }
 
 export const client = new GraphQLClient(process.env.REACT_APP_BACKEND_URL, {
-   // headers: {
-   //    authorization: `Bearer ${getCookies()['access-token']}`,
-   // },
    credentials: 'include',
    mode: 'cors',
 })

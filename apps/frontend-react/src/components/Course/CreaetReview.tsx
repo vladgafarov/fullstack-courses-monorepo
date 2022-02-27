@@ -1,7 +1,7 @@
 import { useCreateReviewMutation } from '@api/generated'
 import { useState } from 'react'
 import { useQueryClient } from 'react-query'
-import { Button, SetRatingStars } from 'ui'
+import { Button, DisplayError, SetRatingStars } from 'ui'
 
 const CreateReview = ({ courseId, onClose }: { courseId: number; onClose }) => {
    const [review, setReview] = useState<string>()
@@ -47,7 +47,7 @@ const CreateReview = ({ courseId, onClose }: { courseId: number; onClose }) => {
                onChange={e => setReview(e.target.value)}
                className="border-2 border-blue-500 rounded-lg focus:ring-2 focus:ring-blue-400 outline-none w-full h-24 py-2 px-3"
             ></textarea>
-            {error && <p>{JSON.stringify(error)}</p>}
+            {error && <DisplayError error={error} />}
             <Button type="submit" disabled={isNaN(star) || isLoading}>
                Оставить отзыв
             </Button>

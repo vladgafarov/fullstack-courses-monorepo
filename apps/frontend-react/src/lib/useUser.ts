@@ -17,7 +17,9 @@ interface UseUser {
 }
 
 export const useUser = (params?: UseUserParams): UseUser => {
-   const { data, isLoading, error, isFetching } = useCurrentUserQuery(params)
+   const { data, isLoading, error, isFetching } = useCurrentUserQuery(params, {
+      keepPreviousData: true,
+   })
 
    // if (isEmpty(data?.currentUser)) {
    //    return {

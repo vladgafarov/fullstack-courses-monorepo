@@ -11,10 +11,16 @@ const AllCourses = () => {
    const [search] = useSearchParams()
    const page = +(search.get('page') ?? 1)
 
-   const { data, error, isLoading } = useGetCoursesQuery({
-      take: 3,
-      skip: perPage * (page - 1),
-   })
+   const { data, error, isLoading, isFetching, isPreviousData } =
+      useGetCoursesQuery(
+         {
+            take: 3,
+            skip: perPage * (page - 1),
+         },
+         {
+            keepPreviousData: true,
+         }
+      )
 
    const count = useMemo(
       () => data?.courses[0]?.count,
@@ -47,7 +53,7 @@ const AllCourses = () => {
                   ))}
                </SimpleGrid>
 
-               <Pagination length={count} page={page} />
+               <Pagination length={count} page={page} isFetching={isFetching} />
             </>
          )}
       </Container>

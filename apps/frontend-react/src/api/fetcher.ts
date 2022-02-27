@@ -37,7 +37,10 @@ export const fetchData = <TData, TVariables>(
          return data
       } catch (err) {
          const parsedError = JSON.parse(JSON.stringify(err))
-         console.log(JSON.parse(JSON.stringify(err)))
+
+         const error = parsedError.response.errors[0]
+
+         throw new Error(error.message)
       }
 
       // const res = await fetch(process.env.REACT_APP_BACKEND_URL, {

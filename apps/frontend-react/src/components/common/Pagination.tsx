@@ -6,11 +6,17 @@ import {
    BiChevronsRight,
    BiChevronsLeft,
 } from 'react-icons/bi'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
-const Pagination = ({ length, page }: { length: number; page: number }) => {
-   // const params = useParams()
-   // const page = +params?.page ?? 1
+const Pagination = ({
+   length,
+   page,
+   isFetching,
+}: {
+   length: number
+   page: number
+   isFetching?: boolean
+}) => {
    const navigate = useNavigate()
 
    const handlePrevPage = () => {
@@ -66,6 +72,7 @@ const Pagination = ({ length, page }: { length: number; page: number }) => {
                         variant={i + 1 === page ? 'default' : 'outline'}
                         key={i}
                         className="px-2 lg:px-4 py-1 lg:py-2"
+                        disabled={isFetching}
                      >
                         {i + 1}
                      </Button>
