@@ -1,4 +1,4 @@
-import { useLogOutMutation } from '@api/generated'
+import { useLogOutMutation, UserRole } from '@api/generated'
 import { useUser } from '@lib/useUser'
 import { Menu, Modal } from '@mantine/core'
 import React, { useState } from 'react'
@@ -28,6 +28,16 @@ const Nav = () => {
    return (
       <>
          <nav className="flex items-center space-x-3">
+            {user?.role === UserRole.Admin && (
+               <>
+                  <Link to="/create-course" className="font-proxima-medium">
+                     Добавить курс
+                  </Link>
+                  <Link to="/admin" className="font-proxima-medium">
+                     Админ-панель
+                  </Link>
+               </>
+            )}
             <button onClick={onOpen} className="text-xl">
                <BiSearch />
             </button>

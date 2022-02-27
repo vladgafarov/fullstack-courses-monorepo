@@ -18,6 +18,8 @@ import UserReviews from '@components/Profile/UserReviews'
 import { NotificationsProvider } from '@mantine/notifications'
 import NotFound from '@components/NotFound'
 import ConfirmUser from '@components/Auth/ConfirmUser'
+import RequireAdmin from '@components/Auth/RequireAdmin'
+import Admin from '@components/Admin/Admin'
 
 const queryClient = new QueryClient()
 
@@ -59,6 +61,18 @@ function App() {
                      <Route path="profile/courses" element={<UserCourses />} />
                      <Route path="profile/reviews" element={<UserReviews />} />
                   </Route>
+
+                  {/* Admin */}
+                  <Route
+                     path="admin/*"
+                     element={
+                        <RequireAdmin>
+                           <Admin />
+                        </RequireAdmin>
+                     }
+                  />
+                  {/* <Route index element={<h1>admin</h1>} /> */}
+                  {/* </Route> */}
                </Route>
             </Routes>
             <ReactQueryDevtools initialIsOpen={false} />
