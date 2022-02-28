@@ -3,7 +3,6 @@ import { MdOutlineRateReview } from 'react-icons/md'
 import { BsCardText } from 'react-icons/bs'
 import { Container } from 'ui'
 import {
-   Link,
    NavLink,
    Route,
    Routes,
@@ -11,6 +10,7 @@ import {
    useNavigate,
 } from 'react-router-dom'
 import { useEffect } from 'react'
+import AddCourse from './AddCourse'
 
 const Admin = () => {
    const location = useLocation()
@@ -21,6 +21,14 @@ const Admin = () => {
          navigate('courses')
       }
    }, [location.pathname])
+
+   if (!!location.pathname.match(/create-course/i)) {
+      return (
+         <Routes>
+            <Route path="/create-course" element={<AddCourse />} />
+         </Routes>
+      )
+   }
 
    return (
       <Container className="flex space-x-8">

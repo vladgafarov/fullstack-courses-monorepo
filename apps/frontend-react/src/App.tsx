@@ -20,6 +20,7 @@ import NotFound from '@components/NotFound'
 import ConfirmUser from '@components/Auth/ConfirmUser'
 import RequireAdmin from '@components/Auth/RequireAdmin'
 import Admin from '@components/Admin/Admin'
+import ScrollToTop from '@components/common/ScrollToTop'
 
 const queryClient = new QueryClient()
 
@@ -27,6 +28,7 @@ function App() {
    return (
       <QueryClientProvider client={queryClient}>
          <NotificationsProvider>
+            <ScrollToTop />
             <Routes>
                <Route path="/" element={<Layout />}>
                   <Route index element={<Main />} />
@@ -71,8 +73,6 @@ function App() {
                         </RequireAdmin>
                      }
                   />
-                  {/* <Route index element={<h1>admin</h1>} /> */}
-                  {/* </Route> */}
                </Route>
             </Routes>
             <ReactQueryDevtools initialIsOpen={false} />

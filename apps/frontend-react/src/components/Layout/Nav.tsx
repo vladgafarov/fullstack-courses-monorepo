@@ -30,7 +30,10 @@ const Nav = () => {
          <nav className="flex items-center space-x-3">
             {user?.role === UserRole.Admin && (
                <>
-                  <Link to="/create-course" className="font-proxima-medium">
+                  <Link
+                     to="/admin/create-course"
+                     className="font-proxima-medium"
+                  >
                      Добавить курс
                   </Link>
                   <Link to="/admin" className="font-proxima-medium">
