@@ -16,7 +16,7 @@ async function bootstrap() {
    app.useGlobalPipes(new ValidationPipe())
    app.use(cookieParser())
    app.enableCors({
-      origin: configService.get('FRONTEND_URL'),
+      origin: [configService.get('FRONTEND_URL'), 'http://localhost:7777'],
       credentials: true,
    })
    app.use(

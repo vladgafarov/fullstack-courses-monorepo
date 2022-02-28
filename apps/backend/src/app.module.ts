@@ -18,7 +18,10 @@ import { CloudinaryModule } from './cloudinary/cloudinary.module'
             autoSchemaFile: true,
             context: ({ req, res }) => ({ req, res }),
             cors: {
-               origin: configService.get('FRONTEND_URL'),
+               origin: [
+                  configService.get('FRONTEND_URL'),
+                  'http://localhost:7777',
+               ],
                credentials: true,
             },
          }),
