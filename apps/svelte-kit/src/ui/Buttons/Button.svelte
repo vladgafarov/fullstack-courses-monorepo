@@ -1,4 +1,5 @@
 <button
+   on:click
    class="
       text-white
       font-bold 

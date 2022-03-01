@@ -1,0 +1,7 @@
+<div class="max-w-md mx-auto my-6 bg-slate-200 p-4 lg:p-6 rounded-lg shadow-md">
+   <h1 class="underline decoration-blue-500">Регистрация</h1>
+
+   <p class="text-center underline pt-3">
+      <a href="/login">Вход</a>
+   </p>
+</div>

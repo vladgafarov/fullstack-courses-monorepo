@@ -1,4 +1,5 @@
 <button
+   on:click
    class="
       text-blue-500
       bg-white

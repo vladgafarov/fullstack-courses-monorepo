@@ -1,5 +1,19 @@
 @tailwind base;
 @tailwind components;
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+   @apply font-proxima-bold;
+}
+
+h1 {
+   @apply text-2xl;
+}
+
 @tailwind utilities;
 
 @font-face {
@@ -23,13 +37,4 @@
 
 * {
    font-family: 'proxima', Arial, sans-serif;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-   font-family: 'proxima-bold', Arial, sans-serif;
 }
