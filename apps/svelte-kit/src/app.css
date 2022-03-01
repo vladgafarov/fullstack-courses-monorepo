@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+   font-family: 'proxima';
+   src: url('../static/fonts/proxima/ProximaNova-Regular.woff') format('woff');
+   font-weight: normal;
+   font-style: normal;
+}
+@font-face {
+   font-family: 'proxima-medium';
+   src: url('../static/fonts/proxima/ProximaNova-Semibold.woff') format('woff');
+   font-weight: medium;
+   font-style: normal;
+}
+@font-face {
+   font-family: 'proxima-bold';
+   src: url('../static/fonts/proxima/ProximaNova-Bold.woff') format('woff');
+   font-weight: bold;
+   font-style: normal;
+}
+
+* {
+   font-family: 'proxima', Arial, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+   font-family: 'proxima-bold', Arial, sans-serif;
+}

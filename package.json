@@ -13,6 +13,7 @@
       "format": "prettier --write \"**/*.{ts,tsx,md}\"",
       "react:dev": "turbo run dev --scope=frontend-react",
       "next:dev": "turbo run dev --scope=frontend-next",
+      "svelte:dev": "turbo run dev --scope=svelte-kit",
       "backend:dev": "turbo run dev --scope=backend",
       "full:dev": "turbo run dev --parallel --scope=backend --scope=frontend-next --no-cache --no-deps",
       "full:dev2": "turbo run dev --parallel --scope=backend --scope=frontend-react --no-cache --no-deps"
