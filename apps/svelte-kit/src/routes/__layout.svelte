@@ -1,7 +1,13 @@
 <script>
-   import Nav from '$components/Nav.svelte';
+   import Nav from '$components/Nav.svelte'
 
-   import '../app.css';
+   import '../app.css'
+
+   import { initClient } from '@urql/svelte'
+
+   initClient({
+      url: String(import.meta.env.VITE_BACKEND_URL)
+   })
 </script>
 
 <div class="flex flex-col min-h-screen">

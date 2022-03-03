@@ -8,5 +8,7 @@ module.exports = {
          'proxima-medium': ['proxima-medium', 'sans-serif']
       }
    },
-   plugins: []
+   plugins: [
+      /*require('daisyui')*/
+   ]
 };

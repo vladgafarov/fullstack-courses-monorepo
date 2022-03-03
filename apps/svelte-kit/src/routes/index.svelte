@@ -1,11 +1,11 @@
 <script>
-   import Container from '$ui/Container.svelte';
+   import Courses from '$components/Main/Courses.svelte'
+   import Hero from '$components/Main/Hero.svelte'
 </script>
 
 <svelte:head>
    <title>Courses</title>
 </svelte:head>
 
-<Container>
-   <h1 class="text-3xl font-bold underline">Hello world!</h1>
-</Container>
+<Hero />
+<Courses />
