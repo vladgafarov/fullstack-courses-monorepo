@@ -1,8 +1,6 @@
 <script lang="ts">
    import { LogInDocument, type LogInMutation, type LogInMutationVariables } from '$api/generated'
-
-   import Button from '$ui/Buttons/Button.svelte'
-   import Input from '$ui/Form/Input.svelte'
+   import { goto } from '$app/navigation'
    import { mutation, operationStore } from '@urql/svelte'
 
    const login = mutation(operationStore<LogInMutation, LogInMutationVariables>(LogInDocument))
@@ -11,16 +9,20 @@
    let password: string = '1234567'
 
    let error: string = ''
+   let loading: boolean = false
 
-   const handleSubmit = () => {
+   const handleSubmit = async () => {
+      loading = true
       login({
          email,
          password
       }).then((res) => {
+         loading = false
          if (res.error) {
             error = res.error.graphQLErrors[0].message
          } else {
             error = ''
+            goto('/')
          }
       })
    }
@@ -30,20 +32,20 @@
    <h1 class="underline decoration-blue-500">Вход</h1>
 
    <form on:submit|preventDefault={handleSubmit} class="flex flex-col space-y-3">
-      <label for="email">
-         <span>Почта</span><br />
-         <Input name="email" bind:value={email} />
+      <label>
+         <span>Почта</span>
+         <input name="email" bind:value={email} />
       </label>
-      <label for="password">
-         <span>Пароль</span> <br />
-         <Input name="password" bind:value={password} />
+      <label>
+         <span>Пароль</span>
+         <input name="password" type="password" bind:value={password} />
       </label>
 
       {#if error}
-         {error}
+         <p class:error>{error}</p>
       {/if}
 
-      <Button>Войти</Button>
+      <button class="btn btn-primary" disabled={loading}>Войти</button>
    </form>
 
    <p class="text-center underline pt-3">
