@@ -28,8 +28,6 @@
    let loading: boolean = false
 
    const handleSubmit = async () => {
-      console.log('wtf')
-
       signupError = ''
       loading = true
       const values = { name, lastName, email, password }
