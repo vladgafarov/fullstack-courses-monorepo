@@ -1,77 +1,59 @@
-# Turborepo starter with pnpm
+# Full-stack web-application
 
-This is an official starter turborepo.
+Учебный проект с фронтендом на React/Next.js и бэкендом на Node/Nest.js на тематику курсов.
 
-## What's inside?
+## Frontend
 
-This turborepo uses [pnpm](https://pnpm.io) as a packages manager. It includes the following packages/apps:
+**Стек:** React - Next.js, redux-toolkit, tailwindCSS, chakra-ui, typescript
 
-### Apps and Packages
+**Особенности:**
 
-- `docs`: a [Next.js](https://nextjs.org) app
-- `web`: another [Next.js](https://nextjs.org) app
-- `ui`: a stub React component library shared by both `web` and `docs` applications
-- `config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `tsconfig`: `tsconfig.json`s used throughout the monorepo
+-  Авторизация через jwt
+-  Возможности пользователя:
+   -  вход - выход - регистрация
+   -  сброс пароля и смена пароля
+   -  запись на курсы, отписка от них
+   -  возможность оставить отзыв на записанный курс
+   -  редактирование и удаление своих отзывов
+   -  личный кабинет с информацией о пользователе, его курсов и отзывов
+- Админка с просмотром и редактированием курсов, отзывов, пользователей, а также созданием самих курсов
+-  Автоматическая генерация graphql в typescript через graphql-codegen
+-  Пагинация, фильтры, поиск курсов
+- Тесты на jest, cypress
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+**Планы на будущее:**
 
-### Utilities
+-  Написать фронт на react-router/react-query без Next.js
+-  Написать фронт на SvelteKit
 
-This turborepo has some additional tools already setup for you:
+![Страница курсов](/courses.png 'Страница курсов')
+![Профиль](/profile.png 'Профиль')
+![Курс](/course-page.png 'Страница курса')
+![Редактирование отзыва](/edit-review.png 'Редактирование отзыва')
+![Поиск](/search.png 'Поиск')
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+## Backend
 
-## Setup
+**Стек:** Nest.js, Prisma, postgreSQL, typescript
 
-This repository is used in the `npx create-turbo@latest` command, and selected when choosing which package manager you wish to use with your monorepo (PNPM).
+**Особенности:**
 
-### Build
+-  GraphQL API
+-  Prisma как ORM для работы с БД
+-  CRUD для курсов, отзывов, пользователей
+-  Загрузка изображений курсов на Cloudinary
+-  Отправка писем для подтверждения регистрации и сброса пароля
+-  Шифрование паролей и токенов с помощью argon2
+-  Разделение пользователей на три роли: USER, ADMIN, TESTER
 
-To build all apps and packages, run the following command:
+**Планы на будущее:**
 
-```
-cd my-turborepo
-pnpm run build
-```
+-  Доработать возможности администратора
+-  Покрыть тестами с jest
 
-### Develop
-
-To develop all apps and packages, run the following command:
-
-```
-cd my-turborepo
-pnpm run dev
-```
-
-### Remote Caching
-
-Turborepo can use a technique known as [Remote Caching (Beta)](https://turborepo.org/docs/features/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching (Beta) you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), then enter the following commands:
-
-```
-cd my-turborepo
-pnpx turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your turborepo:
-
-```
-pnpx turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Pipelines](https://turborepo.org/docs/features/pipelines)
-- [Caching](https://turborepo.org/docs/features/caching)
-- [Remote Caching (Beta)](https://turborepo.org/docs/features/remote-caching)
-- [Scoped Tasks](https://turborepo.org/docs/features/scopes)
-- [Configuration Options](https://turborepo.org/docs/reference/configuration)
-- [CLI Usage](https://turborepo.org/docs/reference/command-line-reference)
+Модель пользователей в Prisma Studio
+![Prisma Studio](/prisma.png 'Prisma Studio')
+Модель курсов
+![Prisma Studio](/prisma-course.png 'Prisma Studio')
+Модель отзывов
+![Prisma Studio](/prisma-review.png 'Prisma Studio')
